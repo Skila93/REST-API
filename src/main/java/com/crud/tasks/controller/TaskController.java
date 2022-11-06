@@ -17,6 +17,8 @@ import java.util.List;
 import java.util.Optional;
 
 
+
+@CrossOrigin("*")
 @RestController
 @RequestMapping("v1/tasks")
 @RequiredArgsConstructor
@@ -45,7 +47,7 @@ public class TaskController {
         Task savedTask = service.saveTask(task);
         return ResponseEntity.ok(taskMapper.mapToTaskDto(savedTask));
     }
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping
     public ResponseEntity<Void> createTask(@RequestBody TaskDto taskDto) {
         Task task = taskMapper.mapToTask(taskDto);
         service.saveTask(task);
